@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  bdc2026:
+    # 镜像名必须为 bdc2026
+    image: bdc2026
+    container_name: bdc2026_container
+    # 挂载卷：组委会会用他们的数据覆盖你的本地文件
+    volumes:
+      - ./app/data:/app/data          # 数据挂载
+      - ./app/model:/app/model        # 模型挂载
+      - ./app/output:/app/output      # 结果输出挂载
+      - ./app/temp:/app/temp          # 中间结果挂载
+    # 限制资源 (模拟组委会环境)
+    # deploy: # Docker-compose v1可能不支持deploy，通常组委会会在运行时限制
+    #   resources:
+    #     limits:
+    #       cpus: '16' # i7-13650H核心数较多，通常不限制CPU核心，主要限制内存
+    #       memory: 16G
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    # 由于是本地测试，先不加限制，确保能跑通

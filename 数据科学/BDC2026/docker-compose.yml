@@ -1,0 +1,11 @@
+version: '3'
+services:
+  bdc2026:
+    build: .
+    volumes:
+      - ./app/data:/app/data
+      - ./app/model:/app/model
+      - ./app/output:/app/output
+      - ./app/temp:/app/temp
+    working_dir: /app
+    command: /bin/bash
